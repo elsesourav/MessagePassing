@@ -26,7 +26,7 @@
 ```
 <br>
 
-## Content script to Background scri
+## Content script to Background script
 > ### Content script Sender
 ```js
    chrome.runtime.sendMessage({
