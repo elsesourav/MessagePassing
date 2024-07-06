@@ -2,8 +2,8 @@
 
 ![x](./image.png)
 
-> ## Background script to Content script
-### Background script Sender
+## Background script to Content script
+> ### Background script Sender
 ```js
    chrome.tabs.onUpdated.addListener((tabId, tab) => {
       if (tab.status == "complete") {
@@ -15,7 +15,7 @@
       };
    });
 ```
-### Content script Receiver
+> ### Content script Receiver
 ```js
    chrome.runtime.onMessage.addListener((request, sender, sendResponse) => {
       if (request.type === "background to content") {
@@ -26,8 +26,8 @@
 ```
 <br>
 
-> ## Content script to Background script
-### Content script Sender
+## Content script to Background scri
+> ### Content script Sender
 ```js
    chrome.runtime.sendMessage({
       type: "content to background",
@@ -35,7 +35,7 @@
       console.log(response);
    });
 ```
-### Background script Receiver
+> ### Background script Receiver
 ```js
    chrome.runtime.onMessage.addListener((request, sender, sendResponse) => {
       if (request.type === "content to background") {
@@ -46,8 +46,8 @@
 ```
 <br>
 
-> ## Content script to Popup script
-### Content script Sender
+## Content script to Popup script
+> ### Content script Sender
 ```js
    chrome.runtime.sendMessage({
       type: "content to popup",
@@ -55,7 +55,7 @@
       console.log(response);
    });
 ```
-### Popup script Receiver
+> ### Popup script Receiver
 ```js
    chrome.runtime.onMessage.addListener((request, sender, sendResponse) => {
       if (request.type === "content to popup") {
@@ -66,8 +66,8 @@
 ```
 <br>
 
-> ## Popup script to Content script
-### Popup script Sender
+## Popup script to Content script
+> ### Popup script Sender
 ```js
    document.addEventListener("DOMContentLoaded", () => {
       chrome.tabs.query({ active: true, currentWindow: true }).then(([tab]) => {
@@ -81,7 +81,7 @@
       });
    });
 ```
-### Content script Receiver
+> ### Content script Receiver
 ```js
    chrome.runtime.onMessage.addListener((request, sender, sendResponse) => {
       if (request.type === "popup to content") {
@@ -92,14 +92,14 @@
 ```
 <br>
 
-> ## Popup script to Background script
-### Popup script Sender
+## Popup script to Background script
+> ### Popup script Sender
 ```js
    chrome.runtime.sendMessage({ type: "popup to background" }, (response) => {
       console.log(response);
    });
 ```
-### Background script Receiver
+> ### Background script Receiver
 ```js
    chrome.runtime.onMessage.addListener((request, _, sendResponse) => {
       if (request.type === "popup to background") {
