@@ -1,4 +1,4 @@
-# <center>  **`Chrome Extension Message Passing v3`** </center>
+# <p align="center"> **`Chrome Extension Message Passing v3`** </p>
 
 ![x](./image.png)
 
