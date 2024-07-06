@@ -101,7 +101,7 @@
 ```
 > ### Background script Receiver
 ```js
-   chrome.runtime.onMessage.addListener((request, _, sendResponse) => {
+   chrome.runtime.onMessage.addListener((request, sender, sendResponse) => {
       if (request.type === "popup to background") {
          sendResponse({ farewell: "response from background script popup" });
       }
