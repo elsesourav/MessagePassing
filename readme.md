@@ -1,10 +1,10 @@
-# <center>  Chrome Extension Message Passing v3 </center>
+# <center>  **`Chrome Extension Message Passing v3`** </center>
 
 ![x](./image.png)
 
-## `Background script to Content script`
+> ## Background script to Content script
 ### Background script Sender
-```
+```js
    chrome.tabs.onUpdated.addListener((tabId, tab) => {
       if (tab.status == "complete") {
          chrome.tabs.sendMessage(tabId, {
@@ -16,7 +16,7 @@
    });
 ```
 ### Content script Receiver
-```
+```js
    chrome.runtime.onMessage.addListener((request, sender, sendResponse) => {
       if (request.type === "background to content") {
          sendResponse({ farewell: "response form content script to background" });
@@ -26,9 +26,9 @@
 ```
 <br>
 
-## `Content script to Background script`
+> ## Content script to Background script
 ### Content script Sender
-```
+```js
    chrome.runtime.sendMessage({
       type: "content to background",
    }, (response) => {
@@ -36,7 +36,7 @@
    });
 ```
 ### Background script Receiver
-```
+```js
    chrome.runtime.onMessage.addListener((request, sender, sendResponse) => {
       if (request.type === "content to background") {
          sendResponse({ farewell: "response from background script content" });
@@ -46,9 +46,9 @@
 ```
 <br>
 
-## `Content script to Popup script`
+> ## Content script to Popup script
 ### Content script Sender
-```
+```js
    chrome.runtime.sendMessage({
       type: "content to popup",
    }, (response) => {
@@ -56,7 +56,7 @@
    });
 ```
 ### Popup script Receiver
-```
+```js
    chrome.runtime.onMessage.addListener((request, sender, sendResponse) => {
       if (request.type === "content to popup") {
          sendResponse({ message: "response form popup script to content" });
@@ -66,9 +66,9 @@
 ```
 <br>
 
-## `Popup script to Content script`
+> ## Popup script to Content script
 ### Popup script Sender
-```
+```js
    document.addEventListener("DOMContentLoaded", () => {
       chrome.tabs.query({ active: true, currentWindow: true }).then(([tab]) => {
          chrome.tabs.sendMessage(
@@ -82,7 +82,7 @@
    });
 ```
 ### Content script Receiver
-```
+```js
    chrome.runtime.onMessage.addListener((request, sender, sendResponse) => {
       if (request.type === "popup to content") {
          sendResponse({ farewell: "response form content script to popup" });
@@ -92,15 +92,15 @@
 ```
 <br>
 
-## `Popup script to Background script`
+> ## Popup script to Background script
 ### Popup script Sender
-```
+```js
    chrome.runtime.sendMessage({ type: "popup to background" }, (response) => {
       console.log(response);
    });
 ```
 ### Background script Receiver
-```
+```js
    chrome.runtime.onMessage.addListener((request, _, sendResponse) => {
       if (request.type === "popup to background") {
          sendResponse({ farewell: "response from background script popup" });
